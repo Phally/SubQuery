@@ -57,6 +57,19 @@ class SubQueryBehaviorTest extends CakeTestCase {
 		));
 
 		$this->assertEquals($expected, $result);
+
+		$result = $this->_SubQueryArticle->SubQueryComment->find('all', array(
+			'fields' => array('id'),
+			'conditions' => array(
+				$this->_SubQueryArticle->SubQueryComment->subQueryCondition($this->_SubQueryArticle, array(
+					'sub_query_article_id NOT' => array(
+						'fields' => array('id'),
+					)
+				))
+			),
+			'recursive' => -1
+		));
+		$this->assertEmpty($result);
 	}
 
 	public function testSubQuery() {
