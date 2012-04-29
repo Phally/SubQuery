@@ -61,6 +61,9 @@ SELECT `id`, (SELECT COUNT(`id`) FROM `comments` AS Comment) AS `Article__count`
 FROM `articles` AS `Article`;
 ```
 
+Of course you can do a lot more cool things with subqueries than this. You could get the count with additional
+conditions. Such as the number of comments for this month per article or even for that for a specific user.
+
 ###Subqueries as conditions###
 
 Using subqueries as conditions is a bit different. You need to wrap the entire condition in a method call. For
