@@ -41,12 +41,12 @@ that could look in the code (from within the model):
 <?php
 
 $this->virtualFields = array(
-  'count' => $this->Comment->subQuery(array(
-    'fields' => array('COUNT(id)')
-  ))
+	'count' => $this->Comment->subQuery(array(
+		'fields' => array('COUNT(id)')
+	))
 );
 
-$result = $this->Article->find('all', array(
+$result = $this->find('all', array(
 	'fields' => array('id', 'count'),
 	'recursive' => -1
 ));
@@ -75,7 +75,7 @@ example in code:
 <?php
 
 $result = $this->find('all', array(
-  'fields' => array('id'),
+	'fields' => array('id'),
 	'conditions' => array(
 		$this->subQueryCondition($this->Article, array(
 			'article_id NOT' => array(
