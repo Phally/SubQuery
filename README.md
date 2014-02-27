@@ -43,6 +43,7 @@ that could look in the code (from within the model):
 $this->virtualFields = array(
 	'count' => $this->Comment->subQuery(array(
 		'fields' => array('COUNT(id)')
+		'conditions' => array('Comment.article_id = Article.id')
 	))
 );
 
@@ -57,7 +58,7 @@ $result = $this->find('all', array(
 This will generate a query looking something like this:
 
 ```sql
-SELECT `id`, (SELECT COUNT(`id`) FROM `comments` AS Comment) AS `Article__count`
+SELECT `id`, (SELECT COUNT(`id`) FROM `comments` AS Comment WHERE `Comment`.`article_id` = `Article`.`id`) AS `Article__count`
 FROM `articles` AS `Article`;
 ```
 
