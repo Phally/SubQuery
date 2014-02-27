@@ -91,6 +91,7 @@ class SubQueryBehavior extends ModelBehavior {
 		if (!in_array($dummyName, ConnectionManager::sourceList())) {
 			$config = $ds->config;
 			$config['datasource'] = $this->_createDatasource($ds);
+			App::uses($config['datasource'], 'Model/Datasource');
 			$new = ConnectionManager::create($dummyName, $config);
 			$new->setConnection($ds->getConnection());
 		}
