@@ -10,6 +10,7 @@ class SubQueryCommentFixture extends CakeTestFixture {
 	public $records = array(
 		array('id' => 1, 'sub_query_article_id' => 1, 'comment' => 'Really? Dude, you suck.'),
 		array('id' => 2, 'sub_query_article_id' => 1, 'comment' => 'One word: Genius.'),
+		array('id' => 3, 'sub_query_article_id' => 3, 'comment' => 'I am spam.'),
 	);
 
 }

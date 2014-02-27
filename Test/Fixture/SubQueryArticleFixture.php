@@ -9,6 +9,7 @@ class SubQueryArticleFixture extends CakeTestFixture {
 	public $records = array(
 		array('id' => 1, 'title' => 'Some useless shizzle about subqueries'),
 		array('id' => 2, 'title' => 'Even more wasted words on subqueries'),
+		array('id' => 3, 'title' => 'An unrelated article full of stuff'),
 	);
 
 }

@@ -34,12 +34,18 @@ class SubQueryBehaviorTest extends CakeTestCase {
 			'recursive' => -1
 		));
 
+
 		$this->assertEquals($expected, $result);
 
 		$expected = array(
 			array(
 				'SubQueryArticle' => array(
 					'id' => 1
+				)
+			),
+			array(
+				'SubQueryArticle' => array(
+					'id' => 3
 				)
 			)
 		);
@@ -79,7 +85,11 @@ class SubQueryBehaviorTest extends CakeTestCase {
 			)
 		);
 
-		$this->_SubQueryArticle->virtualFields = array('count' => $this->_SubQueryArticle->SubQueryComment->subQuery(array('fields' => array('COUNT(id)'))));
+		$this->_SubQueryArticle->virtualFields = array(
+			'count' => $this->_SubQueryArticle->SubQueryComment->subQuery(array(
+				'fields' => array('COUNT(id)'),
+				'conditions' => array('SubQueryComment.sub_query_article_id = SubQueryArticle.id')
+			)));
 		$result = $this->_SubQueryArticle->find('first', array(
 			'fields' => array('count'),
 			'group' => array('count'),
@@ -94,7 +104,7 @@ class SubQueryBehaviorTest extends CakeTestCase {
 		$result = $this->_SubQueryArticle->getAllIdsWithoutComments();
 		$this->assertEquals($expected, $result);
 
-		$expected = array(1 => 1);
+		$expected = array(1 => 1, 3 => 3);
 		$result = $this->_SubQueryArticle->getAllIdsWithComments();
 		$this->assertEquals($expected, $result);
 	}
